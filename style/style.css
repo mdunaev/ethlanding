@@ -1,0 +1,171 @@
+@import url('https://fonts.googleapis.com/css?family=PT+Mono');
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-family: 'PT Mono', monospace;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+}
+
+h1 {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+input[type="text"] {
+    font-size: 15px;
+    padding: 10px;
+    width: 150px;
+    height: auto;
+    margin-bottom: 10px;
+    display: block;
+    border: 0;
+}
+
+.top-header {
+    margin: 20px;
+}
+
+#picker * {
+    box-sizing: initial;
+}
+
+#container {
+    position: relative;
+    margin: 20px;
+    z-index: 1;
+}
+
+#canvas {
+    border: 1px solid #eee;
+}
+
+.zoomdrag {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    width: 110px;
+    height: 110px;
+    /* pointer-events: none; */
+    z-index: 5;
+    transition: all 0.05s ease-out;
+}
+
+#zoom {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    box-shadow: 1px 3px 22px -8px rgba(0, 0, 0, 0.75);
+    border: 1px solid #eee;
+}
+
+#zoomtarget {
+    position: absolute;
+    top: 49px;
+    left: 50px;
+    width: 10px;
+    height: 12px;
+    /* border: 1px solid black;
+  outline: 1px solid white; */
+    z-index: 10;
+}
+
+.color-picker {
+    position: fixed;
+    top: calc(50% - 250px);
+    left: calc(50% - 150px);
+    width: 300px;
+    height: 400px;
+    background-color: white;
+    border: 1px solid #eee;
+    box-shadow: 1px 1px 15px -8px rgba(0, 0, 0, 0.75);
+    z-index: 100;
+    padding: 20px;
+}
+
+#picker-control {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+#picker-control div {
+    display: inline-block;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#picker {
+    margin-bottom: 10px;
+}
+
+.blue {
+    color: #1F3A93;
+}
+
+.gray {
+    color: #ABB7B7;
+}
+
+.btn {
+    display: inline-block;
+    padding: 5px 10px;
+    border: 1px solid;
+    cursor: pointer;
+    font-size: 13px;
+}
+
+.btn:hover {
+    text-decoration: underline;
+}
+
+.send-descritpion {
+    font-size: 10px;
+    margin: 30px 0;
+    color: rgb(139, 139, 139);
+}
+
+.zero {
+    font-size: 9px;
+    color: rgb(105, 105, 105);
+}
+
+.hidden {
+    display: none;
+}
+
+#flag {
+    position: absolute;
+    bottom: 22px;
+    left: -5px;
+}
+
+#flag div {
+    width: 5px;
+    height: 6px;
+}
+
+.blue-flag {
+    background-color: blue;
+}
+
+.black-flag {
+    background-color: black;
+}
+
+.white-flag {
+    background-color: #eee;
+}
+
+#defaultCanvas0 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}

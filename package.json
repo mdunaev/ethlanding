@@ -1,0 +1,16 @@
+{
+  "name": "eth-place",
+  "version": "0.0.1",
+  "scripts": {
+    "server": "python server.py"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-env": "^1.6.1",
+    "p5": "^0.5.16",
+    "simple-color-picker": "^0.1.2",
+    "uglifyjs-webpack-plugin": "^1.1.2",
+    "webpack": "^3.10.0"
+  }
+}
