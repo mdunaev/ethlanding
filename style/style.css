@@ -1,11 +1,12 @@
-@import url('https://fonts.googleapis.com/css?family=PT+Mono');
+@import 'https://fonts.googleapis.com/css?family=Roboto+Mono:100';
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    font-family: 'PT Mono', monospace;
+    font-family: 'Roboto Mono', monospace;
 }
 
 html,
@@ -15,8 +16,18 @@ body {
 }
 
 h1 {
-    font-size: 20px;
-    margin-bottom: 10px;
+    font-size: 30px;
+    margin: 10px;
+}
+
+.logo {
+    margin: 40% auto;
+    width: 100%;
+    text-align: center;
+}
+
+.dud {
+  color: #757575;
 }
 
 input[type="text"] {
