@@ -1,4 +1,4 @@
-@import 'https://fonts.googleapis.com/css?family=Roboto+Mono:100';
+@import 'https://fonts.googleapis.com/css?family=Roboto+Mono';
 
 * {
     margin: 0;
@@ -21,8 +21,13 @@ h1 {
 }
 
 .logo {
-    margin: 20% auto;
+    margin: 20% auto 100px;
     width: 100%;
+    text-align: center;
+    font-weight: 400;
+}
+
+.about {
     text-align: center;
 }
 
