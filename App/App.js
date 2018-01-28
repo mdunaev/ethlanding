@@ -4,10 +4,10 @@ import Web3 from 'web3';
 
 new p5();
 
-const speed = 6;
+const speed = 2;
 var items = Array(30).fill().map((v, i) => ({
-  x: Math.random() * 300 - 150,
-  y: Math.random() * 300 - 150,
+  x: window.innerWidth / 2 * Math.random(),
+  y: window.innerHeight / 2 * Math.random(),
   speedX: Math.random() * speed - speed / 2,
   speedY: Math.random() * speed - speed / 2
 }));
@@ -20,32 +20,47 @@ window.setup = () => {
   resizeHandler();
 }
 
+let isClicked = true;
+
+window.document.addEventListener("click", () => isClicked = !isClicked);
+window.document.addEventListener("touch", () => isClicked = !isClicked);
+
 window.draw = () => {
-  background(255);
-  const width = window.innerWidth;
-  const height = window.innerHeight;
+  if(isClicked) {
+    background(255);
+  }
+  const width = window.innerWidth / 2;
+  const height = window.innerHeight / 2;
   items = items.map((val, i) => {
     val.x += val.speedX;
     val.y += val.speedY;
 
-    if (val.x > width / 2 || val.x < -width / 2 || val.y > height / 2 || val.y < -height / 2) {
-      return {
-        x: 0,
-        y: 0,
-        speedX: Math.random() * speed - speed / 2,
-        speedY: Math.random() * speed - speed / 2
-      };
+    if (val.x > width) {
+      val.x = width;
+      val.speedX = -val.speedX;
+    }
+    if (val.x < 0) {
+      val.x = 0;
+      val.speedX = -val.speedX;
+    }
+    if (val.y > height) {
+      val.y = height;
+      val.speedY = -val.speedY;
+    }
+    if (val.y < 0) {
+      val.y = 0;
+      val.speedY = -val.speedY;
     }
 
     items.slice(i + 1).map(val2 => {
       const dist = distance(val.x, val.y, val2.x, val2.y);
       if (dist < 100) {
-        strokeWeight((1 - dist / 100) / 2);
-        line(val.x + width / 4, val.y + height / 4, val2.x + width / 4, val2.y + height / 4);
+        strokeWeight((1 - dist / 100) / 5);
+        line(val.x, val.y, val2.x, val2.y);
       }
     });
 
-    rect(val.x + width / 4, val.y + height / 4, 1, 1);
+    // rect(val.x, val.y, 1, 1);
     return val;
   });
 }
