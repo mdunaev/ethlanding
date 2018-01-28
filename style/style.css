@@ -16,15 +16,15 @@ body {
 }
 
 h1 {
-    font-size: 30px;
+    font-size: 40px;
     margin: 10px;
 }
 
 .logo {
-    margin: 20% auto 100px;
-    width: 100%;
+    width: 320px;
     text-align: center;
     font-weight: 400;
+    background-color: olive;
 }
 
 .about {
@@ -61,4 +61,11 @@ h1 {
 
 .white-flag {
     background-color: #eee;
+}
+
+#background {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: -1;
 }

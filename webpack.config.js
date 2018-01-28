@@ -23,6 +23,6 @@ module.exports = {
   },
   watch: true,
   plugins: [
-    // new UglifyJsPlugin()
+    new UglifyJsPlugin()
   ],
 };

@@ -1,18 +1,69 @@
 import p5 from "p5";
 import Web3 from 'web3';
 
-const width = 1000;
-const height = 1000;
 
 new p5();
 
+const speed = 6;
+var items = Array(30).fill().map((v, i) => ({
+  x: Math.random() * 300 - 150,
+  y: Math.random() * 300 - 150,
+  speedX: Math.random() * speed - speed / 2,
+  speedY: Math.random() * speed - speed / 2
+}));
+
 window.setup = () => {
-    createCanvas(width, height);
+  const width = window.innerWidth;
+  const height = window.innerHeight;
+  const canvas = createCanvas(width, height);
+  canvas.parent("background");
+  resizeHandler();
 }
 
 window.draw = () => {
+  background(255);
+  const width = window.innerWidth;
+  const height = window.innerHeight;
+  items = items.map((val, i) => {
+    val.x += val.speedX;
+    val.y += val.speedY;
 
+    if (val.x > width / 2 || val.x < -width / 2 || val.y > height / 2 || val.y < -height / 2) {
+      return {
+        x: 0,
+        y: 0,
+        speedX: Math.random() * speed - speed / 2,
+        speedY: Math.random() * speed - speed / 2
+      };
+    }
+
+    items.slice(i + 1).map(val2 => {
+      const dist = distance(val.x, val.y, val2.x, val2.y);
+      if (dist < 100) {
+        strokeWeight((1 - dist / 100) / 2);
+        line(val.x + width / 4, val.y + height / 4, val2.x + width / 4, val2.y + height / 4);
+      }
+    });
+
+    rect(val.x + width / 4, val.y + height / 4, 1, 1);
+    return val;
+  });
 }
+
+const distance = (x1, y1, x2, y2) => Math.sqrt( Math.pow((x1-x2), 2) + Math.pow((y1-y2), 2) );
+
+const resizeHandler = () => {
+  const width = window.innerWidth;
+  const height = window.innerHeight;
+  const canvasEl = document.querySelector("#background canvas");
+
+  canvasEl.setAttribute("width", `${width}px`);
+  canvasEl.setAttribute("height", `${height}px`);
+  canvasEl.style.width = `${width}px`;
+  canvasEl.style.height = `${height}px`;
+}
+
+window.addEventListener("resize", resizeHandler);
 
 const web3 = new Web3();
 const logoEl = document.querySelector(".logo");
@@ -20,17 +71,18 @@ const logoEl = document.querySelector(".logo");
 web3.setProvider(new web3.providers.HttpProvider('https://api.myetherapi.com/eth'));
 
 const insertO = str => {
-    var index = 4 + Math.round(Math.random() * 4);
-    return str.substr(0, index) + (Math.random() > 0.5 ? 'Õ' : 'õ') + str.substr(index + 1);
+  var index = 4 + Math.round(Math.random() * 4);
+  return str.substr(0, index) + (Math.random() > 0.5 ? 'Õ' : 'õ') + str.substr(index + 1);
 }
 const redarwLogo = () => {
-    web3.eth.getBlockNumber().then(result => {
-        web3.eth.getBlock(result, (err, block) => {
-            const hash = insertO(block.hash.slice(0, 9));
-            const fx = new TextScramble(logoEl);
-            fx.setText(hash);
-        })
-    })
+  web3.eth.getBlockNumber().then(result => {
+    web3.eth.getBlock(result, (err, block) => {
+      const hash = insertO(block.hash.slice(0, 9));
+      const fx = new TextScramble(logoEl);
+      fx.setText(hash);
+    });
+    return result;
+  })
 }
 
 class TextScramble {
