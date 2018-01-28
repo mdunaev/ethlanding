@@ -23,7 +23,7 @@ window.setup = () => {
 let isClicked = true;
 
 window.document.addEventListener("click", () => isClicked = !isClicked);
-window.document.addEventListener("touch", () => isClicked = !isClicked);
+window.document.addEventListener("touchstart", () => isClicked = !isClicked);
 
 window.draw = () => {
   if(isClicked) {
