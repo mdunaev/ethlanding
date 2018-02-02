@@ -14,6 +14,11 @@ h1 {
     margin: 10px;
 }
 
+a {
+    color: #1F3A93;
+    text-decoration: none;
+}
+
 .logo {
     width: 320px;
     text-align: center;

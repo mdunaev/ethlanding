@@ -5,6 +5,10 @@ import Web3 from 'web3';
 new p5();
 
 const speed = 2;
+const retinaDivider = window.devicePixelRatio ? window.devicePixelRatio : 1;
+console.log(retinaDivider);
+console.log("HERE");
+
 var items = Array(30).fill().map((v, i) => ({
   x: window.innerWidth / 2 * Math.random(),
   y: window.innerHeight / 2 * Math.random(),
@@ -29,8 +33,8 @@ window.draw = () => {
   if(isClicked) {
     background(255);
   }
-  const width = window.innerWidth / 2;
-  const height = window.innerHeight / 2;
+  const width = window.innerWidth / retinaDivider;
+  const height = window.innerHeight / retinaDivider;
   items = items.map((val, i) => {
     val.x += val.speedX;
     val.y += val.speedY;
